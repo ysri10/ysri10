@@ -1,12 +1,11 @@
 <div align="center">
 
-<a href="https://ysri10.github.io/ysri10/?vader=1" title="Click Darth Vader to launch Interactive Torch Mode">
+<a href="https://ysri10.github.io/ysri10/?vader=1">
   <img src="./assets/darth-vader-banner.svg" alt="Sri Sai Srivatsa Yerrapragada" width="100%" />
 </a>
 
 <br/>
 
-[![Interactive Portfolio](https://img.shields.io/badge/Portfolio-Interactive_Web_View-1d1d1f?style=flat-square&labelColor=111113&color=0071e3)](https://ysri10.github.io/ysri10/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-srivatsa--yerrapragada-1d1d1f?style=flat-square&labelColor=111113&color=2c2c2e)](https://www.linkedin.com/in/srivatsa-yerrapragada)
 [![Email](https://img.shields.io/badge/Email-sssrivatsa.yerrapragada%40gmail.com-1d1d1f?style=flat-square&labelColor=111113&color=2c2c2e)](mailto:sssrivatsa.yerrapragada@gmail.com)
 [![Location](https://img.shields.io/badge/Location-Plano%2C_TX-1d1d1f?style=flat-square&labelColor=111113&color=2c2c2e)](https://ysri10.github.io/ysri10/)

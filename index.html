@@ -543,8 +543,8 @@
         </div>
 
         <!-- TOP-RIGHT DARTH VADER ANIMATION (Hover = Red Lightsaber Glow | Click = 10-Min Dark-Side Torch Mode) -->
-        <label class="vader-widget" for="vader-mode-toggle" title="Hover to ignite lightsaber · Click for Dark-Side Torch Mode (10 min)">
-          <input type="checkbox" id="vader-mode-toggle" class="vader-toggle" aria-label="Toggle Darth Vader Dark-Side Torch Mode" />
+        <label class="vader-widget" for="vader-mode-toggle">
+          <input type="checkbox" id="vader-mode-toggle" class="vader-toggle" aria-label="Toggle Dark Mode" />
           <div class="vader-svg-wrap">
             <svg viewBox="0 0 130 165" width="112" height="136" role="img" aria-label="Animated Darth Vader">
               <defs>
@@ -617,7 +617,7 @@
               </g>
             </svg>
           </div>
-          <span class="vader-status-caption" id="vader-status-caption">Interactive Mode</span>
+          <span class="vader-status-caption" id="vader-status-caption"></span>
         </label>
       </header>
 
@@ -828,7 +828,7 @@
         stopDarkSideTimers();
         toggle.checked = false;
         shell.classList.remove('is-active');
-        caption.textContent = 'Interactive Mode';
+        caption.textContent = '';
       }
 
       function activateDarkSide() {
