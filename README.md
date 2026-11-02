@@ -1,16 +1,12 @@
-<div align="center">
+<p align="center">
+  <a href="https://ysri10.github.io/ysri10/?vader=1">
+    <img src="./assets/darth-vader-banner.svg" alt="Sri Sai Srivatsa Yerrapragada" width="100%" />
+  </a>
+</p>
 
-<a href="https://ysri10.github.io/ysri10/?vader=1">
-  <img src="./assets/darth-vader-banner.svg" alt="Sri Sai Srivatsa Yerrapragada" width="100%" />
-</a>
-
-<br/>
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-srivatsa--yerrapragada-1d1d1f?style=flat-square&labelColor=111113&color=2c2c2e)](https://www.linkedin.com/in/srivatsa-yerrapragada)
-[![Email](https://img.shields.io/badge/Email-sssrivatsa.yerrapragada%40gmail.com-1d1d1f?style=flat-square&labelColor=111113&color=2c2c2e)](mailto:sssrivatsa.yerrapragada@gmail.com)
-[![Location](https://img.shields.io/badge/Location-Plano%2C_TX-1d1d1f?style=flat-square&labelColor=111113&color=2c2c2e)](https://ysri10.github.io/ysri10/)
-
-</div>
+<p align="center">
+  <a href="https://www.linkedin.com/in/srivatsa-yerrapragada"><img src="https://img.shields.io/badge/LinkedIn-srivatsa--yerrapragada-1d1d1f?style=for-the-badge&labelColor=111113&color=2c2c2e" alt="LinkedIn" height="28" /></a>&nbsp;&nbsp;<a href="mailto:sssrivatsa.yerrapragada@gmail.com"><img src="https://img.shields.io/badge/Email-sssrivatsa.yerrapragada%40gmail.com-1d1d1f?style=for-the-badge&labelColor=111113&color=2c2c2e" alt="Email" height="28" /></a>&nbsp;&nbsp;<a href="https://ysri10.github.io/ysri10/"><img src="https://img.shields.io/badge/Location-Plano%2C_TX-1d1d1f?style=for-the-badge&labelColor=111113&color=2c2c2e" alt="Location" height="28" /></a>
+</p>
 
 ---
 
