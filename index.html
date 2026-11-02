@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sri Sai Srivatsa Yerrapragada — AI Infrastructure & Distributed Systems</title>
+  <title>Sri Sai Srivatsa Yerrapragada — Software Engineer</title>
   <style>
     :root {
       --in-oklab: ;
@@ -24,26 +24,39 @@
     }
 
     body {
-      background-color: #090d16;
+      background-color: #090a0f;
       color: #e6edf3;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
-      line-height: 1.6;
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.65;
+      text-align: start;
+      overflow-wrap: break-word;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      text-wrap: balance;
+      line-height: 1.25;
+    }
+
+    p, li {
+      text-wrap: pretty;
     }
 
     /* 1. Default state on the component container (child-state-based-styling) */
     .profile-shell {
-      --shell-bg: #090d16;
-      --card-bg: #111726;
-      --card-border: #232e42;
-      --name-color: #f0f6fc;
+      --shell-bg: #090a0f;
+      --surface-bg: rgba(255, 255, 255, 0.02);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.2);
+      --name-color: #f4f6f8;
       --name-shadow: none;
-      --accent-blue: #58a6ff;
-      --text-primary: #e6edf3;
-      --text-muted: #8b949e;
+      --text-primary: #d8dee9;
+      --text-secondary: #8b949e;
+      --text-muted: #636c76;
       --torch-x: -9999px;
       --torch-y: -9999px;
-      --torch-radius: 135px;
+      --torch-radius: 140px;
 
       min-height: 100vh;
       background-color: var(--shell-bg);
@@ -51,16 +64,16 @@
       position: relative;
       isolation: isolate;
       transition: background-color 0.35s ease, color 0.35s ease;
-      padding: 2.5rem 1.5rem 4rem;
+      padding: 3.5rem 1.5rem 5rem;
     }
 
     /* 2. State-based overrides when child .vader-toggle is :checked */
     .profile-shell:has(.vader-toggle:checked) {
       --shell-bg: #000000;
-      --card-bg: #070a10;
-      --card-border: #2b1115;
+      --surface-bg: #050608;
+      --border-subtle: rgba(255, 26, 26, 0.16);
       --name-color: #ff1a1a;
-      --name-shadow: 0 0 12px rgba(255, 26, 26, 0.85), 0 0 28px rgba(255, 0, 0, 0.55);
+      --name-shadow: 0 0 14px rgba(255, 26, 26, 0.8), 0 0 32px rgba(255, 0, 0, 0.45);
       background-color: #000000;
     }
 
@@ -68,60 +81,66 @@
     @supports not selector(:has(*)) {
       .profile-shell.is-active {
         --shell-bg: #000000;
-        --card-bg: #070a10;
-        --card-border: #2b1115;
+        --surface-bg: #050608;
+        --border-subtle: rgba(255, 26, 26, 0.16);
         --name-color: #ff1a1a;
-        --name-shadow: 0 0 12px rgba(255, 26, 26, 0.85), 0 0 28px rgba(255, 0, 0, 0.55);
+        --name-shadow: 0 0 14px rgba(255, 26, 26, 0.8), 0 0 32px rgba(255, 0, 0, 0.45);
         background-color: #000000;
       }
     }
 
     .container {
-      max-width: 1040px;
+      max-width: 920px;
       margin: 0 auto;
       position: relative;
     }
 
-    /* Header bar where Name & Top-Right Darth Vader stay above darkness */
+    /* Minimalist Header Bar */
     .hero-header {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
-      gap: 1.5rem;
-      padding: 1.75rem 2rem;
-      border-radius: 18px;
-      background: linear-gradient(135deg var(--in-oklab), #0d1322, #160b12);
-      border: 1px solid var(--card-border);
-      margin-bottom: 1.75rem;
+      gap: 2rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 2.75rem;
       position: relative;
       z-index: 40;
-      transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+      transition: border-color 0.35s ease;
     }
 
     .profile-shell:has(.vader-toggle:checked) .hero-header,
     .profile-shell.is-active .hero-header {
-      background: #000000;
-      border-color: transparent;
-      box-shadow: none;
+      border-bottom-color: transparent;
     }
 
     .hero-title-group {
       flex: 1;
+      padding-top: 0.25rem;
     }
 
-    /* Name stays visible and turns glowing Sith Red when Darth Vader is clicked */
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Name remains visible in glowing red font when Dark-Side mode is active */
     .hero-name {
-      font-size: clamp(1.85rem, 3.6vw, 2.75rem);
-      font-weight: 800;
+      font-size: clamp(1.85rem, 1.2rem + 2.2vw, 2.65rem);
+      font-weight: 700;
       color: var(--name-color);
       text-shadow: var(--name-shadow);
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
       transition: color 0.3s ease, text-shadow 0.3s ease;
       position: relative;
       z-index: 50;
     }
 
-    /* Everything inside .torch-reveal-zone goes completely dark in Vader mode EXCEPT under the circular mouse torch! */
+    /* Torch-in-the-darkness mask zone */
     .torch-reveal-zone {
       transition: filter 0.25s ease;
     }
@@ -131,20 +150,19 @@
       -webkit-mask-image: radial-gradient(
         circle var(--torch-radius) at var(--torch-x) var(--torch-y),
         rgba(0, 0, 0, 1) 0%,
-        rgba(0, 0, 0, 0.92) 55%,
-        rgba(0, 0, 0, 0.35) 80%,
+        rgba(0, 0, 0, 0.9) 55%,
+        rgba(0, 0, 0, 0.3) 82%,
         rgba(0, 0, 0, 0) 100%
       );
       mask-image: radial-gradient(
         circle var(--torch-radius) at var(--torch-x) var(--torch-y),
         rgba(0, 0, 0, 1) 0%,
-        rgba(0, 0, 0, 0.92) 55%,
-        rgba(0, 0, 0, 0.35) 80%,
+        rgba(0, 0, 0, 0.9) 55%,
+        rgba(0, 0, 0, 0.3) 82%,
         rgba(0, 0, 0, 0) 100%
       );
     }
 
-    /* Subtle crimson torch halo ring following the cursor in darkness mode */
     .torch-halo {
       position: fixed;
       inset: 0;
@@ -154,8 +172,8 @@
       transition: opacity 0.3s ease;
       background: radial-gradient(
         circle var(--torch-radius) at var(--fixed-torch-x, -999px) var(--fixed-torch-y, -999px),
-        rgba(255, 35, 35, 0.14) 0%,
-        rgba(255, 20, 20, 0.06) 65%,
+        rgba(255, 26, 26, 0.1) 0%,
+        rgba(255, 20, 20, 0.03) 65%,
         transparent 100%
       );
     }
@@ -166,44 +184,40 @@
     }
 
     .hero-subtitle {
-      margin-top: 0.45rem;
+      margin-top: 0.6rem;
       font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--accent-blue);
+      font-weight: 500;
+      color: var(--text-primary);
+      max-width: 68ch;
     }
 
-    .hero-tagline {
-      margin-top: 0.35rem;
+    .hero-summary {
+      margin-top: 0.65rem;
       font-size: 0.92rem;
-      color: var(--text-muted);
+      color: var(--text-secondary);
+      max-width: 68ch;
     }
 
-    .badge-row {
+    .nav-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 1rem;
+      gap: 1.25rem;
+      margin-top: 1.25rem;
     }
 
-    .badge-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      padding: 0.38rem 0.85rem;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 600;
+    .nav-link {
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--text-secondary);
       text-decoration: none;
-      color: #f0f6fc;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding-bottom: 0.1rem;
+      transition: color 0.2s ease, border-color 0.2s ease;
     }
 
-    .badge-pill:hover {
-      transform: translateY(-2px);
-      border-color: var(--accent-blue);
-      background: rgba(88, 166, 255, 0.14);
+    .nav-link:hover {
+      color: #ffffff;
+      border-color: #ffffff;
     }
 
     /* DARTH VADER INTERACTIVE WIDGET (Top-Right near Name) */
@@ -215,6 +229,7 @@
       align-items: center;
       user-select: none;
       cursor: pointer;
+      flex-shrink: 0;
     }
 
     .vader-toggle {
@@ -226,23 +241,23 @@
     }
 
     .vader-svg-wrap {
-      width: 128px;
-      height: 152px;
+      width: 112px;
+      height: 136px;
       display: flex;
       align-items: center;
       justify-content: center;
-      animation: vaderHoverFloat 3s ease-in-out infinite;
+      animation: vaderFloat 3.4s ease-in-out infinite;
       /* Use filter: drop-shadow() instead of box-shadow for non-rectangular SVG shapes */
-      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.65));
+      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.6));
       transition: transform 0.25s ease, filter 0.25s ease;
     }
 
-    @keyframes vaderHoverFloat {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-6px); }
+    @keyframes vaderFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
     }
 
-    /* Lightsaber Default State (normal / unlit or dim standby) */
+    /* Lightsaber Default State */
     .vader-saber-blade {
       opacity: 0;
       transform: scaleY(0.08);
@@ -254,15 +269,15 @@
       transition: fill 0.25s ease;
     }
 
-    /* HOVER ON DARTH VADER: Lightsaber ignites and glows vivid Sith Red! */
+    /* HOVER ON DARTH VADER: Lightsaber glows red */
     .vader-widget:hover .vader-saber-blade {
       opacity: 1;
       transform: scaleY(1);
-      filter: drop-shadow(0 0 6px #ff1a1a) drop-shadow(0 0 14px #ff0000) drop-shadow(0 0 26px #cc0000);
+      filter: drop-shadow(0 0 6px #ff1a1a) drop-shadow(0 0 14px #ff0000) drop-shadow(0 0 26px #b30000);
     }
 
     .vader-widget:hover .vader-svg-wrap {
-      filter: drop-shadow(0 0 18px rgba(255, 26, 26, 0.55));
+      filter: drop-shadow(0 0 16px rgba(255, 26, 26, 0.45));
     }
 
     .vader-widget:hover .vader-eye-glint {
@@ -270,173 +285,192 @@
     }
 
     .vader-status-caption {
-      margin-top: 0.25rem;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
+      margin-top: 0.3rem;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #ff7b72;
-      background: rgba(255, 30, 30, 0.12);
-      border: 1px solid rgba(255, 59, 59, 0.4);
-      padding: 0.18rem 0.65rem;
-      border-radius: 999px;
+      color: var(--text-muted);
+      transition: color 0.25s ease;
       white-space: nowrap;
     }
 
-    /* Bento Grid Layout for Webpage-Style Sections */
-    .bento-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 1.25rem;
-      margin-bottom: 1.5rem;
+    .vader-widget:hover .vader-status-caption {
+      color: #ff6b6b;
     }
 
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 1.5rem;
-      transition: transform 0.22s ease, border-color 0.22s ease;
+    /* Minimalist Sections */
+    .section {
+      margin-bottom: 3rem;
     }
 
-    .card:hover {
-      border-color: rgba(88, 166, 255, 0.45);
-    }
-
-    .col-12 { grid-column: span 12; }
-    .col-8 { grid-column: span 8; }
-    .col-6 { grid-column: span 6; }
-    .col-4 { grid-column: span 4; }
-
-    @media (max-width: 840px) {
-      .hero-header {
-        flex-direction: column-reverse;
-        text-align: center;
-      }
-      .badge-row {
-        justify-content: center;
-      }
-      .col-8, .col-6, .col-4 {
-        grid-column: span 12;
-      }
-    }
-
-    .section-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #f0f6fc;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.55rem;
-    }
-
-    .stat-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 0.85rem;
-    }
-
-    .stat-box {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 12px;
-      padding: 0.9rem 1rem;
-    }
-
-    .stat-num {
-      font-size: 1.45rem;
-      font-weight: 800;
-      color: #58a6ff;
-    }
-
-    .stat-label {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: 0.15rem;
-    }
-
-    .timeline-item {
-      padding-left: 1rem;
-      border-left: 2px solid #30363d;
-      margin-bottom: 1.15rem;
-    }
-
-    .timeline-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .timeline-role {
-      font-weight: 700;
-      color: #f0f6fc;
-      font-size: 0.98rem;
-    }
-
-    .timeline-meta {
-      font-size: 0.8rem;
-      color: #58a6ff;
-      margin-bottom: 0.35rem;
-    }
-
-    .timeline-desc {
-      font-size: 0.88rem;
-      color: #c9d1d9;
-    }
-
-    .chip-cloud {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-    }
-
-    .skill-chip {
-      font-size: 0.78rem;
+    .section-label {
+      font-size: 0.74rem;
       font-weight: 600;
-      padding: 0.3rem 0.68rem;
-      border-radius: 8px;
-      background: rgba(88, 166, 255, 0.1);
-      border: 1px solid rgba(88, 166, 255, 0.25);
-      color: #cae8ff;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
     }
 
+    /* Metrics Strip */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .metric-cell {
+      background: #0b0d13;
+      padding: 1.2rem 1.25rem;
+    }
+
+    .metric-val {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: #f4f6f8;
+      letter-spacing: -0.02em;
+    }
+
+    .metric-desc {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-top: 0.2rem;
+    }
+
+    /* Experience List */
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 1.5rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .exp-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .exp-period {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .exp-location {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    .exp-role {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #f4f6f8;
+      margin-bottom: 0.4rem;
+    }
+
+    .exp-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      max-width: 68ch;
+    }
+
+    /* Technical Stack Table */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .stack-card {
+      background: var(--surface-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 1.15rem 1.25rem;
+    }
+
+    .stack-category {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #f4f6f8;
+      margin-bottom: 0.45rem;
+    }
+
+    .stack-items {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+    }
+
+    /* Minimalist Repository Cards */
     .repo-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
     }
 
     .repo-card {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       text-decoration: none;
       color: inherit;
-      background: rgba(255, 255, 255, 0.025);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      padding: 1.1rem;
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      background: var(--surface-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 1.25rem;
+      transition: border-color 0.2s ease, transform 0.2s ease;
     }
 
     .repo-card:hover {
-      transform: translateY(-3px);
-      border-color: #58a6ff;
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
     }
 
     .repo-name {
-      font-weight: 700;
-      color: #58a6ff;
-      font-size: 0.98rem;
-      margin-bottom: 0.35rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #f4f6f8;
+      margin-bottom: 0.4rem;
     }
 
     .repo-desc {
-      font-size: 0.84rem;
-      color: #c9d1d9;
-      margin-bottom: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.85rem;
     }
 
     .repo-stack {
-      font-size: 0.74rem;
+      font-size: 0.75rem;
       color: var(--text-muted);
+    }
+
+    @media (max-width: 760px) {
+      .hero-header {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+      .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .exp-item {
+        grid-template-columns: 1fr;
+        gap: 0.35rem;
+      }
+      .stack-grid, .repo-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -445,30 +479,34 @@
     <div class="torch-halo" aria-hidden="true"></div>
 
     <div class="container">
-      <!-- HERO HEADER -->
+      <!-- HEADER -->
       <header class="hero-header">
         <div class="hero-title-group">
-          <!-- Name stays visible in red font when Darth Vader Dark-Side mode is clicked -->
+          <div class="torch-reveal-zone" id="hero-eyebrow-zone">
+            <p class="eyebrow">Software Engineer II · Dish Networks · Plano, TX</p>
+          </div>
+
+          <!-- Name stays visible in red font when Darth Vader is clicked -->
           <h1 class="hero-name" id="hero-name">Sri Sai Srivatsa Yerrapragada</h1>
 
-          <!-- Subtitle & Badges participate in the Torch-in-the-Darkness reveal -->
           <div class="torch-reveal-zone" id="hero-details-zone">
-            <p class="hero-subtitle">Software Engineer II @ Dish Networks · AI Infrastructure, Multi-Agent LLMs &amp; Distributed Systems</p>
-            <p class="hero-tagline">Building durable multi-agent workflows on Temporal &amp; Amazon Bedrock, 50M+ vector RAG engines, and multi-GPU PyTorch training pipelines.</p>
-            <div class="badge-row">
-              <a class="badge-pill" href="https://www.linkedin.com/in/srivatsa-yerrapragada" target="_blank" rel="noopener">🔗 LinkedIn</a>
-              <a class="badge-pill" href="mailto:sssrivatsa.yerrapragada@gmail.com">✉️ sssrivatsa.yerrapragada@gmail.com</a>
-              <a class="badge-pill" href="https://github.com/ysri10" target="_blank" rel="noopener">🐙 GitHub @ysri10</a>
-              <span class="badge-pill">📍 Plano, TX</span>
-            </div>
+            <p class="hero-subtitle">Production AI Infrastructure, Multi-Agent LLM Platforms &amp; Distributed Backend Systems</p>
+            <p class="hero-summary">
+              Software Engineer with 4+ years of experience designing and scaling distributed backend services and AI systems in Python, Go, Java, and C++. End-to-end ownership from RFC to production across multi-agent orchestration (Temporal, Amazon Bedrock), 50M+ vector RAG engines, and multi-GPU PyTorch training pipelines.
+            </p>
+            <nav class="nav-links" aria-label="Profile Links">
+              <a class="nav-link" href="https://www.linkedin.com/in/srivatsa-yerrapragada" target="_blank" rel="noopener">LinkedIn</a>
+              <a class="nav-link" href="mailto:sssrivatsa.yerrapragada@gmail.com">sssrivatsa.yerrapragada@gmail.com</a>
+              <a class="nav-link" href="https://github.com/ysri10" target="_blank" rel="noopener">GitHub</a>
+            </nav>
           </div>
         </div>
 
         <!-- TOP-RIGHT DARTH VADER ANIMATION (Hover = Red Lightsaber Glow | Click = 10-Min Dark-Side Torch Mode) -->
-        <label class="vader-widget" for="vader-mode-toggle" title="Hover to ignite lightsaber · Click to toggle Dark-Side Torch Mode (10 min)">
+        <label class="vader-widget" for="vader-mode-toggle" title="Hover to ignite lightsaber · Click for Dark-Side Torch Mode (10 min)">
           <input type="checkbox" id="vader-mode-toggle" class="vader-toggle" aria-label="Toggle Darth Vader Dark-Side Torch Mode" />
           <div class="vader-svg-wrap">
-            <svg viewBox="0 0 130 165" width="128" height="152" role="img" aria-label="Animated Darth Vader with Red Lightsaber">
+            <svg viewBox="0 0 130 165" width="112" height="136" role="img" aria-label="Animated Darth Vader">
               <defs>
                 <linearGradient id="vaderHelmet" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stop-color="#3a404c" />
@@ -482,58 +520,56 @@
                 </linearGradient>
               </defs>
 
-              <!-- Base Shadow -->
-              <ellipse cx="56" cy="154" rx="34" ry="5" fill="#000000" opacity="0.6" />
+              <ellipse cx="56" cy="154" rx="34" ry="5" fill="#000000" opacity="0.55" />
 
-              <!-- Flowing Cape -->
-              <path d="M22,82 Q10,122 14,150 L98,150 Q102,122 90,82 Z" fill="#0b0d12" stroke="#262b36" stroke-width="1.2" />
+              <!-- Cape -->
+              <path d="M22,82 Q10,122 14,150 L98,150 Q102,122 90,82 Z" fill="#0b0d12" stroke="#262b36" stroke-width="1.1" />
 
-              <!-- Armor Torso -->
-              <path d="M26,84 Q56,73 86,84 L80,144 L32,144 Z" fill="#161920" stroke="#323846" stroke-width="1.2" />
+              <!-- Torso -->
+              <path d="M26,84 Q56,73 86,84 L80,144 L32,144 Z" fill="#15181f" stroke="#2d3340" stroke-width="1.1" />
 
               <!-- Chest Control Panel -->
-              <rect x="43" y="99" width="26" height="24" rx="3" fill="#0c0e12" stroke="#414858" stroke-width="1.1" />
-              <rect x="47" y="104" width="5.5" height="5.5" rx="1" fill="#ff2e2e">
-                <animate attributeName="opacity" values="0.35;1;0.35" dur="1.2s" repeatCount="indefinite" />
+              <rect x="43" y="99" width="26" height="24" rx="2.5" fill="#0c0e12" stroke="#3b4252" stroke-width="1" />
+              <rect x="47" y="104" width="5" height="5" rx="1" fill="#ff2e2e">
+                <animate attributeName="opacity" values="0.35;1;0.35" dur="1.3s" repeatCount="indefinite" />
               </rect>
-              <rect x="47" y="113" width="5.5" height="5.5" rx="1" fill="#3fb950">
-                <animate attributeName="opacity" values="1;0.35;1" dur="1.8s" repeatCount="indefinite" />
+              <rect x="47" y="113" width="5" height="5" rx="1" fill="#3fb950">
+                <animate attributeName="opacity" values="1;0.35;1" dur="1.9s" repeatCount="indefinite" />
               </rect>
-              <rect x="55" y="104" width="10" height="3.5" rx="1" fill="#58a6ff" />
-              <rect x="55" y="110" width="10" height="3.5" rx="1" fill="#8b949e" />
-              <rect x="55" y="116" width="10" height="3.5" rx="1" fill="#d29922" />
+              <rect x="55" y="104" width="10" height="3.2" rx="1" fill="#58a6ff" />
+              <rect x="55" y="110" width="10" height="3.2" rx="1" fill="#8b949e" />
+              <rect x="55" y="116" width="10" height="3.2" rx="1" fill="#d29922" />
 
               <!-- Belt -->
-              <rect x="30" y="129" width="52" height="7" rx="2" fill="#090a0d" stroke="#30363d" />
-              <rect x="49" y="127" width="14" height="11" rx="2" fill="#8b949e" />
+              <rect x="30" y="129" width="52" height="7" rx="1.5" fill="#090a0d" stroke="#2d3340" />
+              <rect x="49" y="127" width="14" height="11" rx="1.5" fill="#8b949e" />
 
-              <!-- Iconic Helmet -->
-              <path d="M18,70 Q20,18 56,18 Q92,18 94,70 L100,81 Q56,89 12,81 Z" fill="url(#vaderHelmet)" stroke="#414858" stroke-width="1.3" />
-              <path d="M54,18 L58,18 L59,54 L53,54 Z" fill="#525a68" opacity="0.7" />
-              <path d="M24,54 Q56,46 88,54" fill="none" stroke="#525a68" stroke-width="2" />
+              <!-- Helmet -->
+              <path d="M18,70 Q20,18 56,18 Q92,18 94,70 L100,81 Q56,89 12,81 Z" fill="url(#vaderHelmet)" stroke="#3b4252" stroke-width="1.2" />
+              <path d="M54,18 L58,18 L59,54 L53,54 Z" fill="#484f58" opacity="0.65" />
+              <path d="M24,54 Q56,46 88,54" fill="none" stroke="#484f58" stroke-width="1.8" />
 
               <!-- Eye Lenses -->
-              <ellipse cx="42" cy="59" rx="9.5" ry="5.2" transform="rotate(-8 42 59)" fill="#050608" stroke="#484f58" stroke-width="1.2" />
-              <ellipse cx="70" cy="59" rx="9.5" ry="5.2" transform="rotate(8 70 59)" fill="#050608" stroke="#484f58" stroke-width="1.2" />
-              <ellipse class="vader-eye-glint" cx="39" cy="57" rx="3.2" ry="1.3" transform="rotate(-8 39 57)" fill="#8b949e" opacity="0.65" />
-              <ellipse class="vader-eye-glint" cx="67" cy="57" rx="3.2" ry="1.3" transform="rotate(8 67 57)" fill="#8b949e" opacity="0.65" />
+              <ellipse cx="42" cy="59" rx="9.5" ry="5.2" transform="rotate(-8 42 59)" fill="#050608" stroke="#484f58" stroke-width="1.1" />
+              <ellipse cx="70" cy="59" rx="9.5" ry="5.2" transform="rotate(8 70 59)" fill="#050608" stroke="#484f58" stroke-width="1.1" />
+              <ellipse class="vader-eye-glint" cx="39" cy="57" rx="3.2" ry="1.2" transform="rotate(-8 39 57)" fill="#8b949e" opacity="0.6" />
+              <ellipse class="vader-eye-glint" cx="67" cy="57" rx="3.2" ry="1.2" transform="rotate(8 67 57)" fill="#8b949e" opacity="0.6" />
 
-              <!-- Breathing Grill / Vocoder -->
-              <polygon points="56,63 43,79 69,79" fill="#1f242d" stroke="#586069" stroke-width="1.2" />
+              <!-- Breathing Grill -->
+              <polygon points="56,63 43,79 69,79" fill="#1d212a" stroke="#484f58" stroke-width="1.1" />
               <line x1="56" y1="65" x2="56" y2="78" stroke="#090a0d" stroke-width="1.4" />
               <line x1="51" y1="69" x2="51" y2="78" stroke="#090a0d" stroke-width="1.3" />
               <line x1="61" y1="69" x2="61" y2="78" stroke="#090a0d" stroke-width="1.3" />
 
-              <!-- Right Hand & Lightsaber Hilt -->
-              <path d="M82,90 L102,108 L95,116 L76,99 Z" fill="#1b1f27" stroke="#30363d" />
+              <!-- Right Hand & Lightsaber -->
+              <path d="M82,90 L102,108 L95,116 L76,99 Z" fill="#191d25" stroke="#2d3340" />
               <g transform="translate(102, 110) rotate(-12)">
-                <!-- Hilt (Always visible) -->
-                <rect x="-3.8" y="-11" width="7.6" height="22" rx="2" fill="#9ca3af" stroke="#1f2937" stroke-width="1" />
-                <rect x="-4.2" y="-5" width="8.4" height="3.5" fill="#111827" />
-                <rect x="-4.2" y="2" width="8.4" height="5" fill="#111827" />
-                <circle cx="0" cy="-8" r="1.5" fill="#ff1a1a" />
+                <rect x="-3.6" y="-11" width="7.2" height="22" rx="1.8" fill="#9ca3af" stroke="#1f2937" stroke-width="1" />
+                <rect x="-4" y="-5" width="8" height="3.5" fill="#111827" />
+                <rect x="-4" y="2" width="8" height="5" fill="#111827" />
+                <circle cx="0" cy="-8" r="1.4" fill="#ff1a1a" />
 
-                <!-- Lightsaber Blade (Glows Red on Hover!) -->
+                <!-- Crimson Blade (Glows Red on Hover) -->
                 <g class="vader-saber-blade">
                   <rect x="-5.5" y="-102" width="11" height="92" rx="5.5" fill="#ff0000" opacity="0.82" />
                   <rect x="-2.4" y="-100" width="4.8" height="89" rx="2.4" fill="url(#bladeCore)" />
@@ -541,165 +577,167 @@
               </g>
             </svg>
           </div>
-          <span class="vader-status-caption" id="vader-status-caption">⚔️ Hover: Ignite · Click: Dark Side</span>
+          <span class="vader-status-caption" id="vader-status-caption">Hover · Click</span>
         </label>
       </header>
 
-      <!-- BODY CONTENT (Hidden in pitch darkness unless illuminated by the circular hover torch) -->
+      <!-- MAIN CONTENT (Revealed only under circular hover torch when Dark-Side mode is active) -->
       <div class="torch-reveal-zone" id="main-torch-zone">
-        <!-- BENTO ROW 1: About + Telemetry Metrics -->
-        <section class="bento-grid">
-          <div class="card col-8">
-            <h2 class="section-title">👨‍💻 Engineering Focus</h2>
-            <p style="color:#c9d1d9; font-size:0.95rem;">
-              Software Engineer with <strong>4+ years of experience</strong> building production AI infrastructure and distributed backend services in Python, Go, Java, and C++. I own systems end-to-end from RFC/design doc to production across <strong>Multi-Agent LLM Orchestration</strong> (Temporal + Amazon Bedrock), <strong>Enterprise-Scale RAG</strong> (50M+ embeddings on Snowflake Cortex &amp; Pinecone), and <strong>Distributed Multi-GPU Training</strong> (PyTorch DDP).
-            </p>
+        <!-- Key Benchmarks -->
+        <section class="section">
+          <h2 class="section-label">Selected Benchmarks</h2>
+          <div class="metrics-grid">
+            <div class="metric-cell">
+              <div class="metric-val">50M+</div>
+              <div class="metric-desc">Vector Embeddings Indexed</div>
+            </div>
+            <div class="metric-cell">
+              <div class="metric-val">1M+ / day</div>
+              <div class="metric-desc">Queries at sub-150ms P99</div>
+            </div>
+            <div class="metric-cell">
+              <div class="metric-val">99.95%</div>
+              <div class="metric-desc">Microservice Availability</div>
+            </div>
+            <div class="metric-cell">
+              <div class="metric-val">3x AWS</div>
+              <div class="metric-desc">ML Specialty · SAA · DVA</div>
+            </div>
           </div>
+        </section>
 
-          <div class="card col-4">
-            <h2 class="section-title">📊 Production Impact</h2>
-            <div class="stat-grid">
-              <div class="stat-box">
-                <div class="stat-num">50M+</div>
-                <div class="stat-label">Vector Embeddings</div>
+        <!-- Experience -->
+        <section class="section">
+          <h2 class="section-label">Experience</h2>
+          <div class="exp-list">
+            <div class="exp-item">
+              <div>
+                <div class="exp-period">Feb 2026 — Present</div>
+                <div class="exp-location">Plano, TX</div>
               </div>
-              <div class="stat-box">
-                <div class="stat-num">1M+/day</div>
-                <div class="stat-label">RAG Queries (&lt;150ms P99)</div>
+              <div>
+                <h3 class="exp-role">Software Engineer II · Dish Networks</h3>
+                <p class="exp-desc">
+                  Own architecture and RFC process for AI-LC, a durable multi-agent platform built on Temporal and Amazon Bedrock automating the software lifecycle from JIRA ticket to reviewable Git branch with dynamic complexity/budget model routing and persona-based LLM-as-a-Judge quality gates across Dish, Boost Mobile, and Sling.
+                </p>
               </div>
-              <div class="stat-box">
-                <div class="stat-num">99.95%</div>
-                <div class="stat-label">Service Availability</div>
+            </div>
+
+            <div class="exp-item">
+              <div>
+                <div class="exp-period">May 2024 — Feb 2026</div>
+                <div class="exp-location">Plano, TX</div>
               </div>
-              <div class="stat-box">
-                <div class="stat-num">3× AWS</div>
-                <div class="stat-label">Certified (ML, SAA, DVA)</div>
+              <div>
+                <h3 class="exp-role">Software Engineer · Dish Networks</h3>
+                <p class="exp-desc">
+                  Architected an enterprise RAG diagnostics assistant scaling a 50M+ embedding index (Snowflake Cortex to Pinecone) to 1M+ daily queries at sub-150ms P99 latency, cutting manual triage time by 40%, improving Context Recall by 25%+ via recursive structure-aware chunking, and reducing P95 inference latency by 22% via LoRA fine-tuning and async batching.
+                </p>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div>
+                <div class="exp-period">Sept 2022 — May 2024</div>
+                <div class="exp-location">Gainesville, FL</div>
+              </div>
+              <div>
+                <h3 class="exp-role">Machine Learning Engineer (RA) · University of Florida</h3>
+                <p class="exp-desc">
+                  Engineered multi-GPU PyTorch DDP training pipelines across 8 GPUs for 10M+ hyperspectral samples (-50% iteration time) and a mixed-precision MLflow evaluation framework (-65% evaluation cost, improving spatial-spectral CNN R² from 0.68 to 0.76).
+                </p>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div>
+                <div class="exp-period">Jun 2021 — Jul 2022</div>
+                <div class="exp-location">Bengaluru, India</div>
+              </div>
+              <div>
+                <h3 class="exp-role">Software Developer · Accenture</h3>
+                <p class="exp-desc">
+                  Built high-availability Java and C++ microservices processing 2M+ daily transactions at 99.95% uptime and REST APIs serving 100K+ daily requests, reducing latency by 60% via Redis caching and connection pooling.
+                </p>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- BENTO ROW 2: Experience + Tech Stack -->
-        <section class="bento-grid">
-          <div class="card col-8">
-            <h2 class="section-title">💼 Experience Highlights</h2>
-
-            <div class="timeline-item">
-              <div class="timeline-role">Software Engineer II — Dish Networks</div>
-              <div class="timeline-meta">Plano, TX · Feb 2026 – Present</div>
-              <div class="timeline-desc">
-                Own architecture &amp; RFC process for <strong>AI-LC</strong>, a multi-agent platform on <strong>Temporal + Amazon Bedrock</strong> automating the dev lifecycle from JIRA ticket to reviewable Git branch with dynamic complexity/budget LLM routing and persona-based <strong>LLM-as-a-Judge</strong> guardrails across Dish, Boost Mobile, and Sling.
-              </div>
+        <!-- Technical Stack -->
+        <section class="section">
+          <h2 class="section-label">Technical Stack</h2>
+          <div class="stack-grid">
+            <div class="stack-card">
+              <div class="stack-category">Languages</div>
+              <div class="stack-items">Python · Go · Java · C / C++ · C# · TypeScript · SQL</div>
             </div>
-
-            <div class="timeline-item">
-              <div class="timeline-role">Software Engineer — Dish Networks</div>
-              <div class="timeline-meta">Plano, TX · May 2024 – Feb 2026</div>
-              <div class="timeline-desc">
-                Architected a RAG support &amp; diagnostics assistant scaling a <strong>50M+ embedding index</strong> (Snowflake Cortex → Pinecone) to <strong>1M+ daily queries at sub-150ms P99 latency</strong> (-40% triage time, +25% Context Recall via recursive chunking, -22% P95 inference latency via LoRA + async batching).
-              </div>
+            <div class="stack-card">
+              <div class="stack-category">AI &amp; LLM Infrastructure</div>
+              <div class="stack-items">PyTorch DDP · LoRA · RAG · Amazon Bedrock · Temporal · LangGraph · PydanticAI · Pinecone · FAISS · MLflow</div>
             </div>
-
-            <div class="timeline-item">
-              <div class="timeline-role">Machine Learning Engineer (Research Assistant) — University of Florida</div>
-              <div class="timeline-meta">Gainesville, FL · Sept 2022 – May 2024</div>
-              <div class="timeline-desc">
-                Built <strong>PyTorch DDP</strong> pipelines across 8 GPUs for 10M+ hyperspectral samples (-50% iteration time) and a mixed-precision <strong>MLflow</strong> evaluation framework (-65% evaluation cost, improving spatial-spectral CNN R² from 0.68 to 0.76).
-              </div>
+            <div class="stack-card">
+              <div class="stack-category">Backend &amp; Distributed Systems</div>
+              <div class="stack-items">FastAPI · Spring Boot · Node.js · REST · OAuth / JWT · Kafka · AWS SNS / SQS · Microservices</div>
             </div>
-
-            <div class="timeline-item">
-              <div class="timeline-role">Software Developer — Accenture</div>
-              <div class="timeline-meta">Bengaluru, India · Jun 2021 – Jul 2022</div>
-              <div class="timeline-desc">
-                Built high-availability <strong>Java/C++ microservices</strong> processing <strong>2M+ transactions/day</strong> at 99.95% uptime and REST APIs serving 100K+ daily requests (-60% latency via Redis caching &amp; connection pooling).
-              </div>
-            </div>
-          </div>
-
-          <div class="card col-4">
-            <h2 class="section-title">🛠️ Technical Arsenal</h2>
-            <p style="font-size:0.8rem; color:#8b949e; margin-bottom:0.5rem;">Languages</p>
-            <div class="chip-cloud" style="margin-bottom:1rem;">
-              <span class="skill-chip">Python</span>
-              <span class="skill-chip">Go</span>
-              <span class="skill-chip">Java</span>
-              <span class="skill-chip">C / C++</span>
-              <span class="skill-chip">TypeScript</span>
-              <span class="skill-chip">SQL</span>
-            </div>
-
-            <p style="font-size:0.8rem; color:#8b949e; margin-bottom:0.5rem;">AI / LLM Infrastructure</p>
-            <div class="chip-cloud" style="margin-bottom:1rem;">
-              <span class="skill-chip">PyTorch DDP</span>
-              <span class="skill-chip">Temporal</span>
-              <span class="skill-chip">Amazon Bedrock</span>
-              <span class="skill-chip">RAG</span>
-              <span class="skill-chip">LoRA</span>
-              <span class="skill-chip">LangGraph</span>
-              <span class="skill-chip">PydanticAI</span>
-              <span class="skill-chip">Pinecone</span>
-              <span class="skill-chip">FAISS</span>
-              <span class="skill-chip">MLflow</span>
-            </div>
-
-            <p style="font-size:0.8rem; color:#8b949e; margin-bottom:0.5rem;">Distributed Systems &amp; Cloud</p>
-            <div class="chip-cloud">
-              <span class="skill-chip">FastAPI</span>
-              <span class="skill-chip">Spring Boot</span>
-              <span class="skill-chip">Kafka</span>
-              <span class="skill-chip">AWS</span>
-              <span class="skill-chip">Kubernetes</span>
-              <span class="skill-chip">Docker</span>
-              <span class="skill-chip">Terraform</span>
-              <span class="skill-chip">Snowflake</span>
-              <span class="skill-chip">Redis</span>
-              <span class="skill-chip">PostgreSQL</span>
+            <div class="stack-card">
+              <div class="stack-category">Cloud, Data &amp; Infrastructure</div>
+              <div class="stack-items">AWS · GCP · Kubernetes · Docker · Terraform · Snowflake · PostgreSQL · Redis · DynamoDB · Spark</div>
             </div>
           </div>
         </section>
 
-        <!-- BENTO ROW 3: Featured Repositories -->
-        <section class="bento-grid">
-          <div class="card col-12">
-            <h2 class="section-title">🚀 Featured Open-Source Repositories</h2>
-            <div class="repo-grid">
-              <a class="repo-card" href="https://github.com/ysri10/Semantic-Search-Analysis" target="_blank" rel="noopener">
+        <!-- Selected Repositories -->
+        <section class="section">
+          <h2 class="section-label">Selected Repositories</h2>
+          <div class="repo-grid">
+            <a class="repo-card" href="https://github.com/ysri10/Semantic-Search-Analysis" target="_blank" rel="noopener">
+              <div>
                 <div class="repo-name">Semantic-Search-Analysis</div>
-                <div class="repo-desc">Multi-document semantic search engine over PDF &amp; TXT files with batched transformer embeddings and FAISS L2 indexing.</div>
-                <div class="repo-stack">DistilBERT · SentenceTransformers · FAISS · Flask · React · Streamlit</div>
-              </a>
+                <p class="repo-desc">Multi-document semantic search engine over PDF and TXT files with batched transformer embeddings and FAISS L2 indexing.</p>
+              </div>
+              <div class="repo-stack">DistilBERT · SentenceTransformers · FAISS · Flask · React</div>
+            </a>
 
-              <a class="repo-card" href="https://github.com/ysri10/Cold-Email-Generator" target="_blank" rel="noopener">
+            <a class="repo-card" href="https://github.com/ysri10/Cold-Email-Generator" target="_blank" rel="noopener">
+              <div>
                 <div class="repo-name">Cold-Email-Generator</div>
-                <div class="repo-desc">Automated career page scraper and personalized outreach email generator matching job requirements against a vector portfolio store.</div>
-                <div class="repo-stack">LangChain · LLaMA 3.1-70B (Groq) · ChromaDB · Streamlit</div>
-              </a>
+                <p class="repo-desc">Automated career page scraper and outreach generator matching job requirements against a vector portfolio store.</p>
+              </div>
+              <div class="repo-stack">LangChain · LLaMA 3.1-70B (Groq) · ChromaDB · Streamlit</div>
+            </a>
 
-              <a class="repo-card" href="https://github.com/ysri10/camera-view-adjustment" target="_blank" rel="noopener">
+            <a class="repo-card" href="https://github.com/ysri10/camera-view-adjustment" target="_blank" rel="noopener">
+              <div>
                 <div class="repo-name">camera-view-adjustment</div>
-                <div class="repo-desc">Pre-capture active camera view adjustment architecture breakdown &amp; multi-view composition datasets (FCDB, GAICD, CPC, Pano2Vid).</div>
-                <div class="repo-stack">Computer Vision · MobileNet-SPP · Semi-Supervised Learning · PyTorch</div>
-              </a>
+                <p class="repo-desc">Pre-capture active camera view adjustment architecture analysis and multi-view composition benchmarks (FCDB, GAICD, CPC, Pano2Vid).</p>
+              </div>
+              <div class="repo-stack">MobileNet-SPP · Semi-Supervised Learning · PyTorch</div>
+            </a>
 
-              <a class="repo-card" href="https://github.com/ysri10/Movie-Recommendation-System" target="_blank" rel="noopener">
+            <a class="repo-card" href="https://github.com/ysri10/Movie-Recommendation-System" target="_blank" rel="noopener">
+              <div>
                 <div class="repo-name">Movie-Recommendation-System</div>
-                <div class="repo-desc">Content-based movie recommender trained on TMDB 5000 with cosine similarity ranking and live poster integration.</div>
-                <div class="repo-stack">Scikit-Learn · Cosine Similarity · NLTK · Streamlit · TMDB API</div>
-              </a>
+                <p class="repo-desc">Content-based movie recommender trained on TMDB 5000 with cosine similarity ranking and live poster retrieval.</p>
+              </div>
+              <div class="repo-stack">Scikit-Learn · Cosine Similarity · NLTK · Streamlit</div>
+            </a>
 
-              <a class="repo-card" href="https://github.com/ysri10/Email-Spam-Detector" target="_blank" rel="noopener">
+            <a class="repo-card" href="https://github.com/ysri10/Email-Spam-Detector" target="_blank" rel="noopener">
+              <div>
                 <div class="repo-name">Email-Spam-Detector</div>
-                <div class="repo-desc">Real-time SMS &amp; Email spam classifier benchmarking 11 ML models and serving a TF-IDF + Multinomial Naive Bayes pipeline.</div>
-                <div class="repo-stack">Scikit-Learn · NLTK · TF-IDF · Streamlit</div>
-              </a>
+                <p class="repo-desc">Real-time SMS and Email spam classifier benchmarking 11 ML models and serving a TF-IDF + Multinomial Naive Bayes pipeline.</p>
+              </div>
+              <div class="repo-stack">Scikit-Learn · NLTK · TF-IDF · Streamlit</div>
+            </a>
 
-              <a class="repo-card" href="https://github.com/ysri10/NoteBook" target="_blank" rel="noopener">
+            <a class="repo-card" href="https://github.com/ysri10/NoteBook" target="_blank" rel="noopener">
+              <div>
                 <div class="repo-name">NoteBook</div>
-                <div class="repo-desc">Full-stack note-taking web application with JWT authentication, auto-refresh interceptors, and protected routes.</div>
-                <div class="repo-stack">Django REST · SimpleJWT · PostgreSQL · React 18 · Vite</div>
-              </a>
-            </div>
+                <p class="repo-desc">Full-stack note-taking web application with JWT authentication, auto-refresh interceptors, and protected routes.</p>
+              </div>
+              <div class="repo-stack">Django REST · SimpleJWT · PostgreSQL · React 18 · Vite</div>
+            </a>
           </div>
         </section>
       </div>
@@ -711,10 +749,11 @@
       const shell = document.getElementById('profile-shell');
       const toggle = document.getElementById('vader-mode-toggle');
       const caption = document.getElementById('vader-status-caption');
+      const eyebrowZone = document.getElementById('hero-eyebrow-zone');
       const heroZone = document.getElementById('hero-details-zone');
       const mainZone = document.getElementById('main-torch-zone');
 
-      const TEN_MINUTES_MS = 10 * 60 * 1000; // 600,000 ms (10 minutes)
+      const TEN_MINUTES_MS = 10 * 60 * 1000;
       let timerId = null;
       let countdownIntervalId = null;
       let expiresAt = 0;
@@ -728,12 +767,11 @@
         }
       }
 
-      // Update circular torch coordinates relative to each masked zone
       function updateTorchPosition(clientX, clientY) {
         shell.style.setProperty('--fixed-torch-x', `${clientX}px`);
         shell.style.setProperty('--fixed-torch-y', `${clientY}px`);
 
-        [heroZone, mainZone].forEach((zone) => {
+        [eyebrowZone, heroZone, mainZone].forEach((zone) => {
           if (!zone) return;
           const rect = zone.getBoundingClientRect();
           zone.style.setProperty('--torch-x', `${clientX - rect.left}px`);
@@ -762,7 +800,7 @@
         stopDarkSideTimers();
         toggle.checked = false;
         shell.classList.remove('is-active');
-        caption.textContent = '⚔️ Hover: Ignite · Click: Dark Side';
+        caption.textContent = 'Hover · Click';
       }
 
       function activateDarkSide() {
@@ -773,7 +811,7 @@
           const remainingSec = Math.max(0, Math.ceil((expiresAt - Date.now()) / 1000));
           const mins = String(Math.floor(remainingSec / 60)).padStart(2, '0');
           const secs = String(remainingSec % 60).padStart(2, '0');
-          caption.textContent = `🔦 Torch Active (${mins}:${secs}) · Click to Exit`;
+          caption.textContent = `Torch ${mins}:${secs} · Exit`;
         };
 
         updateBadge();
@@ -791,7 +829,6 @@
         }
       });
 
-      // Allow launching directly into Dark-Side Torch mode via ?vader=1 from GitHub README
       const params = new URLSearchParams(window.location.search);
       if (params.get('vader') === '1') {
         toggle.checked = true;
