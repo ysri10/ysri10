@@ -30,11 +30,11 @@ Software Engineer with **4+ years of experience** designing, building, and opera
 
 ### Professional Experience
 
-**Software Engineer II — Dish Networks** *(Plano, TX | Feb 2026 – Present)*
+**Software Engineer II — EchoStar** *(Plano, TX | Feb 2026 – Present)*
 - Own architecture and RFC process for **AI-LC**, a multi-agent platform built on **Temporal** and **Amazon Bedrock** automating the software engineering lifecycle from JIRA ticket to reviewable Git branch with human-approval gates across Dish, Boost Mobile, and Sling.
 - Engineered dynamic LLM model routing based on task complexity and token budget scoring with automated fallback mechanisms, paired with a configurable persona-based **LLM-Judge** evaluation layer (manager, architect, developer, tester).
 
-**Software Engineer — Dish Networks** *(Plano, TX | May 2024 – Feb 2026)*
+**Software Engineer — EchoStar** *(Plano, TX | May 2024 – Feb 2026)*
 - Architected an enterprise RAG support and diagnostics assistant scaling a **50M+ embedding index** (Snowflake Cortex to Pinecone) to **1M+ daily queries at sub-150ms P99 latency**, reducing manual triage time by 40%.
 - Increased Context Recall by **25%+** via structure-aware recursive chunking and metadata tagging; reduced P95 inference latency by **22%** via LoRA fine-tuning and asynchronous request batching; built multi-GPU embedding pipelines (+35% ingestion throughput).
 - Designed versioned **FastAPI** services with JWT/OAuth authentication and distributed tracing supporting 50K+ daily requests at sub-200ms P95 latency and 99.9% availability.

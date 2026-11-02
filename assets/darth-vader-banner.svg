@@ -98,7 +98,7 @@
     <line x1="20" y1="1" x2="980" y2="1" stroke="url(#topSpecular)" stroke-width="1" />
 
     <!-- Apple HIG Typography Hierarchy -->
-    <text x="52" y="56" class="eyebrow">SOFTWARE ENGINEER II · DISH NETWORKS · PLANO, TX</text>
+    <text x="52" y="56" class="eyebrow">SOFTWARE ENGINEER II · ECHOSTAR · PLANO, TX</text>
     <text x="52" y="102" class="hero-name">Sri Sai Srivatsa Yerrapragada</text>
     <text x="52" y="136" class="hero-role">Production AI Infrastructure, Multi-Agent LLM Platforms &amp; Distributed Systems</text>
 
