@@ -1,22 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 220" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 224" width="100%" height="100%">
   <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#090b10" />
-      <stop offset="65%" stop-color="#0d1017" />
-      <stop offset="100%" stop-color="#14090c" />
+    <linearGradient id="appleSurface" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111113" />
+      <stop offset="60%" stop-color="#161618" />
+      <stop offset="100%" stop-color="#1c1c1e" />
     </linearGradient>
 
-    <radialGradient id="sithAura" cx="88%" cy="48%" r="24%">
-      <stop offset="0%" stop-color="#ff1a1a" stop-opacity="0.22">
-        <animate attributeName="stop-opacity" values="0.08;0.26;0.08" dur="4s" repeatCount="indefinite" />
-      </stop>
-      <stop offset="100%" stop-color="#0d1017" stop-opacity="0" />
-    </radialGradient>
+    <linearGradient id="topSpecular" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.04" />
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.14" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.04" />
+    </linearGradient>
 
     <linearGradient id="helmetGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#343942" />
-      <stop offset="50%" stop-color="#171a20" />
-      <stop offset="100%" stop-color="#090a0d" />
+      <stop offset="0%" stop-color="#3a3a3c" />
+      <stop offset="50%" stop-color="#1c1c1e" />
+      <stop offset="100%" stop-color="#09090b" />
     </linearGradient>
 
     <linearGradient id="saberCore" x1="0%" y1="100%" x2="0%" y2="0%">
@@ -39,153 +38,148 @@
 
     <style>
       .banner-root {
-        font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
       }
       .eyebrow {
         font-size: 11px;
         font-weight: 600;
-        fill: #7d8590;
-        letter-spacing: 2px;
+        fill: #86868b;
+        letter-spacing: 1.6px;
       }
       .hero-name {
-        font-size: 32px;
+        font-size: 34px;
         font-weight: 700;
-        fill: #f0f6fc;
-        letter-spacing: -0.6px;
+        fill: #f5f5f7;
+        letter-spacing: -0.8px;
       }
       .hero-role {
-        font-size: 15px;
-        font-weight: 500;
-        fill: #c9d1d9;
+        font-size: 15.5px;
+        font-weight: 400;
+        fill: #a1a1a6;
+        letter-spacing: -0.1px;
       }
-      .hero-sub {
-        font-size: 13px;
-        fill: #7d8590;
-      }
-      .metric-box {
-        fill: rgba(255, 255, 255, 0.025);
-        stroke: #21262d;
+      .pill-box {
+        fill: rgba(255, 255, 255, 0.04);
+        stroke: rgba(255, 255, 255, 0.08);
         stroke-width: 1;
       }
-      .metric-text {
+      .pill-label {
         font-size: 11.5px;
         font-weight: 500;
-        fill: #8b949e;
+        fill: #d2d2d7;
       }
       .vader-group {
         cursor: pointer;
-        animation: floatVader 3.4s ease-in-out infinite;
+        animation: floatVader 3.6s ease-in-out infinite;
       }
       @keyframes floatVader {
-        0%, 100% { transform: translate(835px, 24px); }
-        50% { transform: translate(835px, 17px); }
+        0%, 100% { transform: translate(836px, 26px); }
+        50% { transform: translate(836px, 19px); }
       }
       .saber-blade {
-        opacity: 0.15;
+        opacity: 0.14;
         transition: opacity 0.25s ease;
-        animation: readmeSaberPulse 5s ease-in-out infinite;
+        animation: readmeSaberPulse 5.2s ease-in-out infinite;
       }
       @keyframes readmeSaberPulse {
-        0%, 38%, 100% { opacity: 0.12; }
-        52%, 78% { opacity: 1; }
+        0%, 40%, 100% { opacity: 0.12; }
+        55%, 75% { opacity: 1; }
       }
       .vader-group:hover .saber-blade {
         opacity: 1 !important;
         animation: none;
       }
       .chest-led-red {
-        animation: blinkLed 1.4s infinite alternate;
+        animation: blinkLed 1.5s infinite alternate;
       }
       .chest-led-green {
-        animation: blinkLed 2.1s infinite alternate-reverse;
+        animation: blinkLed 2.2s infinite alternate-reverse;
       }
       @keyframes blinkLed {
-        0% { opacity: 0.3; }
+        0% { opacity: 0.35; }
         100% { opacity: 1; }
       }
     </style>
   </defs>
 
   <g class="banner-root">
-    <!-- Minimalist Framed Surface -->
-    <rect width="1000" height="220" rx="14" fill="url(#bgGrad)" stroke="#1f242c" stroke-width="1.5" />
-    <rect width="1000" height="220" rx="14" fill="url(#sithAura)" />
+    <!-- Apple Pro Dark Elevated Card -->
+    <rect width="1000" height="224" rx="20" fill="url(#appleSurface)" stroke="#2c2c2e" stroke-width="1" />
+    <line x1="20" y1="1" x2="980" y2="1" stroke="url(#topSpecular)" stroke-width="1" />
 
     <!-- Subtle Hairline Divider -->
-    <line x1="48" y1="154" x2="760" y2="154" stroke="#1f242c" stroke-width="1" />
+    <line x1="52" y1="154" x2="760" y2="154" stroke="#2c2c2e" stroke-width="1" />
 
-    <!-- Minimal Typography Block -->
-    <text x="48" y="48" class="eyebrow">SOFTWARE ENGINEER II · DISH NETWORKS · PLANO, TX</text>
-    <text x="48" y="92" class="hero-name">Sri Sai Srivatsa Yerrapragada</text>
-    <text x="48" y="124" class="hero-role">Production AI Infrastructure, Multi-Agent LLM Platforms &amp; Distributed Systems</text>
+    <!-- Apple HIG Typography Hierarchy -->
+    <text x="52" y="50" class="eyebrow">SOFTWARE ENGINEER II · DISH NETWORKS · PLANO, TX</text>
+    <text x="52" y="94" class="hero-name">Sri Sai Srivatsa Yerrapragada</text>
+    <text x="52" y="126" class="hero-role">Production AI Infrastructure, Multi-Agent LLM Platforms &amp; Distributed Systems</text>
 
-    <!-- Minimalist Metric Pills (No Emojis) -->
-    <g transform="translate(48, 170)">
-      <rect class="metric-box" width="168" height="26" rx="5" />
-      <text x="84" y="17" text-anchor="middle" class="metric-text">50M+ Vector Index</text>
+    <!-- Formal Key Specifications -->
+    <g transform="translate(52, 170)">
+      <rect class="pill-box" width="172" height="28" rx="8" />
+      <text x="86" y="18" text-anchor="middle" class="pill-label">50M+ Vector Embeddings</text>
 
-      <rect class="metric-box" x="180" width="184" height="26" rx="5" />
-      <text x="272" y="17" text-anchor="middle" class="metric-text">1M+ Daily Queries (&lt;150ms)</text>
+      <rect class="pill-box" x="184" width="192" height="28" rx="8" />
+      <text x="280" y="18" text-anchor="middle" class="pill-label">1M+ Daily Queries (&lt;150ms)</text>
 
-      <rect class="metric-box" x="376" width="176" height="26" rx="5" />
-      <text x="464" y="17" text-anchor="middle" class="metric-text">3x AWS Certified</text>
+      <rect class="pill-box" x="388" width="168" height="28" rx="8" />
+      <text x="472" y="18" text-anchor="middle" class="pill-label">3x AWS Certified</text>
     </g>
 
     <!-- DARTH VADER ANIMATED CHARACTER (TOP RIGHT) -->
-    <g class="vader-group" transform="translate(835, 24)">
-      <ellipse cx="56" cy="160" rx="34" ry="5" fill="#000000" opacity="0.55" />
+    <g class="vader-group" transform="translate(836, 26)">
+      <ellipse cx="56" cy="158" rx="32" ry="4.5" fill="#000000" opacity="0.55" />
 
       <!-- Cape -->
-      <path d="M22,82 Q11,122 15,154 L97,154 Q101,122 90,82 Z" fill="#0b0c10" stroke="#22262e" stroke-width="1.1" />
+      <path d="M22,82 Q11,122 15,152 L97,152 Q101,122 90,82 Z" fill="#0b0b0d" stroke="#2c2c2e" stroke-width="1.1" />
 
       <!-- Torso Armor -->
-      <path d="M26,84 Q56,73 86,84 L80,146 L32,146 Z" fill="#14171d" stroke="#2b303c" stroke-width="1.1" />
+      <path d="M26,84 Q56,73 86,84 L80,144 L32,144 Z" fill="#161618" stroke="#3a3a3c" stroke-width="1.1" />
 
       <!-- Chest Control Panel -->
-      <rect x="43" y="99" width="26" height="24" rx="2.5" fill="#0c0e12" stroke="#363c4a" stroke-width="1" />
-      <rect class="chest-led-red" x="47" y="104" width="5" height="5" rx="1" fill="#ff2e2e" />
-      <rect class="chest-led-green" x="47" y="113" width="5" height="5" rx="1" fill="#3fb950" />
-      <rect x="55" y="104" width="10" height="3.2" rx="1" fill="#58a6ff" opacity="0.85" />
-      <rect x="55" y="110" width="10" height="3.2" rx="1" fill="#8b949e" opacity="0.6" />
-      <rect x="55" y="116" width="10" height="3.2" rx="1" fill="#d29922" opacity="0.75" />
+      <rect x="43" y="99" width="26" height="24" rx="2.5" fill="#0d0d0f" stroke="#48484a" stroke-width="1" />
+      <rect class="chest-led-red" x="47" y="104" width="5" height="5" rx="1" fill="#ff3b30" />
+      <rect class="chest-led-green" x="47" y="113" width="5" height="5" rx="1" fill="#30d158" />
+      <rect x="55" y="104" width="10" height="3.2" rx="1" fill="#0a84ff" opacity="0.85" />
+      <rect x="55" y="110" width="10" height="3.2" rx="1" fill="#8e8e93" opacity="0.65" />
+      <rect x="55" y="116" width="10" height="3.2" rx="1" fill="#ff9f0a" opacity="0.8" />
 
       <!-- Belt -->
-      <rect x="30" y="130" width="52" height="7" rx="1.5" fill="#090a0d" stroke="#2b303c" />
-      <rect x="49" y="128" width="14" height="11" rx="1.5" fill="#8b949e" />
+      <rect x="30" y="129" width="52" height="7" rx="1.5" fill="#09090b" stroke="#3a3a3c" />
+      <rect x="49" y="127" width="14" height="11" rx="1.5" fill="#8e8e93" />
 
       <!-- Helmet -->
-      <path d="M18,70 Q20,18 56,18 Q92,18 94,70 L100,81 Q56,89 12,81 Z" fill="url(#helmetGrad)" stroke="#363c4a" stroke-width="1.2" />
-      <path d="M54,18 L58,18 L59,54 L53,54 Z" fill="#484f58" opacity="0.65" />
-      <path d="M24,54 Q56,46 88,54" fill="none" stroke="#484f58" stroke-width="1.8" />
+      <path d="M18,70 Q20,18 56,18 Q92,18 94,70 L100,81 Q56,89 12,81 Z" fill="url(#helmetGrad)" stroke="#48484a" stroke-width="1.2" />
+      <path d="M54,18 L58,18 L59,54 L53,54 Z" fill="#636366" opacity="0.6" />
+      <path d="M24,54 Q56,46 88,54" fill="none" stroke="#636366" stroke-width="1.8" />
 
       <!-- Eye Lenses -->
-      <ellipse cx="42" cy="59" rx="9.5" ry="5.2" transform="rotate(-8 42 59)" fill="#050608" stroke="#484f58" stroke-width="1.1" />
-      <ellipse cx="70" cy="59" rx="9.5" ry="5.2" transform="rotate(8 70 59)" fill="#050608" stroke="#484f58" stroke-width="1.1" />
-      <ellipse cx="39" cy="57" rx="3.2" ry="1.2" transform="rotate(-8 39 57)" fill="#8b949e" opacity="0.45" />
-      <ellipse cx="67" cy="57" rx="3.2" ry="1.2" transform="rotate(8 67 57)" fill="#8b949e" opacity="0.45" />
+      <ellipse cx="42" cy="59" rx="9.5" ry="5.2" transform="rotate(-8 42 59)" fill="#050507" stroke="#48484a" stroke-width="1.1" />
+      <ellipse cx="70" cy="59" rx="9.5" ry="5.2" transform="rotate(8 70 59)" fill="#050507" stroke="#48484a" stroke-width="1.1" />
+      <ellipse cx="39" cy="57" rx="3.2" ry="1.2" transform="rotate(-8 39 57)" fill="#aeaeb2" opacity="0.45" />
+      <ellipse cx="67" cy="57" rx="3.2" ry="1.2" transform="rotate(8 67 57)" fill="#aeaeb2" opacity="0.45" />
 
       <!-- Breathing Mask -->
-      <polygon points="56,63 43,79 69,79" fill="#1c2028" stroke="#484f58" stroke-width="1.1" />
-      <line x1="56" y1="65" x2="56" y2="78" stroke="#090a0d" stroke-width="1.4" />
-      <line x1="51" y1="69" x2="51" y2="78" stroke="#090a0d" stroke-width="1.3" />
-      <line x1="61" y1="69" x2="61" y2="78" stroke="#090a0d" stroke-width="1.3" />
+      <polygon points="56,63 43,79 69,79" fill="#1c1c1e" stroke="#636366" stroke-width="1.1" />
+      <line x1="56" y1="65" x2="56" y2="78" stroke="#09090b" stroke-width="1.4" />
+      <line x1="51" y1="69" x2="51" y2="78" stroke="#09090b" stroke-width="1.3" />
+      <line x1="61" y1="69" x2="61" y2="78" stroke="#09090b" stroke-width="1.3" />
 
       <!-- Arm & Lightsaber -->
-      <path d="M82,90 L102,108 L95,116 L76,99 Z" fill="#181c24" stroke="#2b303c" />
+      <path d="M82,90 L102,108 L95,116 L76,99 Z" fill="#1c1c1e" stroke="#3a3a3c" />
       <g transform="translate(102, 110) rotate(-12)">
-        <rect x="-3.6" y="-11" width="7.2" height="22" rx="1.8" fill="#9ca3af" stroke="#1f2937" stroke-width="1" />
-        <rect x="-4" y="-5" width="8" height="3.5" fill="#111827" />
-        <rect x="-4" y="2" width="8" height="5" fill="#111827" />
-        <circle cx="0" cy="-8" r="1.4" fill="#ff1a1a" />
+        <rect x="-3.6" y="-11" width="7.2" height="22" rx="1.8" fill="#aeaeb2" stroke="#1c1c1e" stroke-width="1" />
+        <rect x="-4" y="-5" width="8" height="3.5" fill="#1c1c1e" />
+        <rect x="-4" y="2" width="8" height="5" fill="#1c1c1e" />
+        <circle cx="0" cy="-8" r="1.4" fill="#ff3b30" />
 
         <!-- Crimson Blade -->
         <g class="saber-blade">
-          <rect x="-5" y="-102" width="10" height="92" rx="5" fill="#ff0000" opacity="0.8" filter="url(#redSaberGlow)" />
+          <rect x="-5" y="-102" width="10" height="92" rx="5" fill="#ff0000" opacity="0.82" filter="url(#redSaberGlow)" />
           <rect x="-2.2" y="-100" width="4.4" height="89" rx="2.2" fill="url(#saberCore)" />
         </g>
       </g>
-
-      <text x="56" y="174" text-anchor="middle" font-size="9" font-weight="600" fill="#6e7681" letter-spacing="1.2">INTERACTIVE MODE</text>
     </g>
   </g>
 </svg>

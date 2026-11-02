@@ -24,120 +24,153 @@
     }
 
     body {
-      background-color: #090a0f;
-      color: #e6edf3;
-      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.65;
+      background-color: #000000;
+      color: #f5f5f7;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      line-height: 1.55;
       text-align: start;
       overflow-wrap: break-word;
-      overflow-x: hidden;
+      overflow-x: clip;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     h1, h2, h3, h4 {
       text-wrap: balance;
-      line-height: 1.25;
+      line-height: 1.18;
+      letter-spacing: -0.022em;
     }
 
     p, li {
       text-wrap: pretty;
     }
 
-    /* 1. Default state on the component container (child-state-based-styling) */
+    svg {
+      display: block;
+    }
+
+    /* 1. Default Apple Pro Dark state on container (child-state-based-styling) */
     .profile-shell {
-      --shell-bg: #090a0f;
-      --surface-bg: rgba(255, 255, 255, 0.02);
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-hover: rgba(255, 255, 255, 0.2);
-      --name-color: #f4f6f8;
+      --shell-bg: #000000;
+      --card-surface: rgba(28, 28, 30, 0.72);
+      --card-elevated: rgba(44, 44, 46, 0.45);
+      --border-hairline: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.22);
+      --name-color: #f5f5f7;
       --name-shadow: none;
-      --text-primary: #d8dee9;
-      --text-secondary: #8b949e;
-      --text-muted: #636c76;
+      --text-primary: #f5f5f7;
+      --text-secondary: #a1a1a6;
+      --text-tertiary: #86868b;
+      --apple-blue: #2997ff;
       --torch-x: -9999px;
       --torch-y: -9999px;
-      --torch-radius: 140px;
+      --torch-radius: 145px;
 
-      min-height: 100vh;
+      min-block-size: 100dvh;
       background-color: var(--shell-bg);
+      background-image: radial-gradient(
+        ellipse 80% 45% at 50% -10%,
+        rgba(41, 151, 255, 0.08),
+        transparent 70%
+      );
       color: var(--text-primary);
       position: relative;
       isolation: isolate;
       transition: background-color 0.35s ease, color 0.35s ease;
-      padding: 3.5rem 1.5rem 5rem;
+      padding-block: 3.5rem 5rem;
+      padding-inline: 1.5rem;
     }
 
     /* 2. State-based overrides when child .vader-toggle is :checked */
     .profile-shell:has(.vader-toggle:checked) {
       --shell-bg: #000000;
-      --surface-bg: #050608;
-      --border-subtle: rgba(255, 26, 26, 0.16);
+      --card-surface: rgba(14, 14, 16, 0.9);
+      --border-hairline: rgba(255, 59, 48, 0.16);
       --name-color: #ff1a1a;
       --name-shadow: 0 0 14px rgba(255, 26, 26, 0.8), 0 0 32px rgba(255, 0, 0, 0.45);
       background-color: #000000;
+      background-image: none;
     }
 
     /* Fallback CSS for older browsers without :has() support */
     @supports not selector(:has(*)) {
       .profile-shell.is-active {
         --shell-bg: #000000;
-        --surface-bg: #050608;
-        --border-subtle: rgba(255, 26, 26, 0.16);
+        --card-surface: rgba(14, 14, 16, 0.9);
+        --border-hairline: rgba(255, 59, 48, 0.16);
         --name-color: #ff1a1a;
         --name-shadow: 0 0 14px rgba(255, 26, 26, 0.8), 0 0 32px rgba(255, 0, 0, 0.45);
         background-color: #000000;
+        background-image: none;
       }
     }
 
+    /* Fluid scaling container */
     .container {
-      max-width: 920px;
-      margin: 0 auto;
+      max-inline-size: 980px;
+      margin-inline: auto;
       position: relative;
+      container-type: inline-size;
+      container-name: profile-container;
     }
 
-    /* Minimalist Header Bar */
+    /* Apple HIG Top Hero Header */
     .hero-header {
       display: flex;
-      align-items: flex-start;
+      align-items: safe center;
       justify-content: space-between;
       gap: 2rem;
-      padding-bottom: 2.5rem;
-      border-bottom: 1px solid var(--border-subtle);
-      margin-bottom: 2.75rem;
+      padding-block: 2.25rem;
+      padding-inline: 2.5rem;
+      border-radius: 1.25rem;
+      background: var(--card-surface);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border: 1px solid var(--border-hairline);
+      margin-block-end: 2rem;
       position: relative;
       z-index: 40;
-      transition: border-color 0.35s ease;
+      transition: background 0.35s ease, border-color 0.35s ease;
     }
 
     .profile-shell:has(.vader-toggle:checked) .hero-header,
     .profile-shell.is-active .hero-header {
-      border-bottom-color: transparent;
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border-color: transparent;
     }
 
     .hero-title-group {
-      flex: 1;
-      padding-top: 0.25rem;
+      flex: 1 1 480px;
+      min-inline-size: 0;
     }
 
     .eyebrow {
       font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
+      font-weight: 600;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
+      color: var(--text-tertiary);
+      margin-block-end: 0.45rem;
     }
 
-    /* Name remains visible in glowing red font when Dark-Side mode is active */
+    /* Fluid-scaled Display Name (max <= 2.5x min for accessibility) */
     .hero-name {
-      font-size: clamp(1.85rem, 1.2rem + 2.2vw, 2.65rem);
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
       font-weight: 700;
       color: var(--name-color);
       text-shadow: var(--name-shadow);
-      letter-spacing: -0.025em;
+      letter-spacing: -0.028em;
       transition: color 0.3s ease, text-shadow 0.3s ease;
       position: relative;
       z-index: 50;
+    }
+
+    @supports (font-size: 1cqi) {
+      .hero-name {
+        font-size: clamp(1.75rem, 4.2cqi, 2.75rem);
+      }
     }
 
     /* Torch-in-the-darkness mask zone */
@@ -172,8 +205,8 @@
       transition: opacity 0.3s ease;
       background: radial-gradient(
         circle var(--torch-radius) at var(--fixed-torch-x, -999px) var(--fixed-torch-y, -999px),
-        rgba(255, 26, 26, 0.1) 0%,
-        rgba(255, 20, 20, 0.03) 65%,
+        rgba(255, 59, 48, 0.08) 0%,
+        rgba(255, 59, 48, 0.02) 65%,
         transparent 100%
       );
     }
@@ -184,40 +217,48 @@
     }
 
     .hero-subtitle {
-      margin-top: 0.6rem;
-      font-size: 1.05rem;
+      margin-block-start: 0.5rem;
+      font-size: 1.0625rem;
       font-weight: 500;
       color: var(--text-primary);
-      max-width: 68ch;
+      max-inline-size: 64ch;
     }
 
     .hero-summary {
-      margin-top: 0.65rem;
-      font-size: 0.92rem;
+      margin-block-start: 0.65rem;
+      font-size: 0.9375rem;
       color: var(--text-secondary);
-      max-width: 68ch;
+      max-inline-size: 66ch;
     }
 
+    /* Apple-style Action Pills & Links */
     .nav-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 1.25rem;
-      margin-top: 1.25rem;
+      flex-wrap: balance;
+      align-items: safe center;
+      gap: 0.75rem;
+      margin-block-start: 1.35rem;
     }
 
-    .nav-link {
-      font-size: 0.84rem;
+    .apple-pill {
+      display: inline-flex;
+      align-items: safe center;
+      padding-block: 0.42rem;
+      padding-inline: 0.95rem;
+      border-radius: 999px;
+      font-size: 0.8125rem;
       font-weight: 500;
-      color: var(--text-secondary);
+      color: var(--text-primary);
+      background: var(--card-elevated);
+      border: 1px solid var(--border-hairline);
       text-decoration: none;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-      padding-bottom: 0.1rem;
-      transition: color 0.2s ease, border-color 0.2s ease;
+      transition: background 0.2s ease, border-color 0.2s ease;
     }
 
-    .nav-link:hover {
-      color: #ffffff;
-      border-color: #ffffff;
+    .apple-pill:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--border-hover);
     }
 
     /* DARTH VADER INTERACTIVE WIDGET (Top-Right near Name) */
@@ -226,29 +267,29 @@
       z-index: 60;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: safe center;
       user-select: none;
       cursor: pointer;
-      flex-shrink: 0;
+      margin-inline-start: auto;
     }
 
     .vader-toggle {
       position: absolute;
       opacity: 0;
-      width: 1px;
-      height: 1px;
+      inline-size: 1px;
+      block-size: 1px;
       pointer-events: none;
     }
 
     .vader-svg-wrap {
-      width: 112px;
-      height: 136px;
+      inline-size: 112px;
+      block-size: 136px;
       display: flex;
-      align-items: center;
+      align-items: safe center;
       justify-content: center;
-      animation: vaderFloat 3.4s ease-in-out infinite;
+      animation: vaderFloat 3.6s ease-in-out infinite;
       /* Use filter: drop-shadow() instead of box-shadow for non-rectangular SVG shapes */
-      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.6));
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.6));
       transition: transform 0.25s ease, filter 0.25s ease;
     }
 
@@ -257,7 +298,6 @@
       50% { transform: translateY(-5px); }
     }
 
-    /* Lightsaber Default State */
     .vader-saber-blade {
       opacity: 0;
       transform: scaleY(0.08);
@@ -277,160 +317,166 @@
     }
 
     .vader-widget:hover .vader-svg-wrap {
-      filter: drop-shadow(0 0 16px rgba(255, 26, 26, 0.45));
+      filter: drop-shadow(0 0 16px rgba(255, 59, 48, 0.45));
     }
 
     .vader-widget:hover .vader-eye-glint {
-      fill: #ff3b3b;
+      fill: #ff3b30;
     }
 
     .vader-status-caption {
-      margin-top: 0.3rem;
-      font-size: 0.68rem;
+      margin-block-start: 0.25rem;
+      font-size: 0.6875rem;
       font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      color: var(--text-tertiary);
       transition: color 0.25s ease;
       white-space: nowrap;
     }
 
     .vader-widget:hover .vader-status-caption {
-      color: #ff6b6b;
+      color: #ff453a;
     }
 
-    /* Minimalist Sections */
+    /* Apple HIG Bento Sections */
     .section {
-      margin-bottom: 3rem;
+      margin-block-end: 2.25rem;
     }
 
-    .section-label {
-      font-size: 0.74rem;
+    .section-header {
+      font-size: 0.75rem;
       font-weight: 600;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 1.25rem;
+      color: var(--text-tertiary);
+      margin-block-end: 0.9rem;
+      padding-inline-start: 0.25rem;
     }
 
-    /* Metrics Strip */
+    /* Apple Bento Metrics Row */
     .metrics-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--border-subtle);
-      border: 1px solid var(--border-subtle);
-      border-radius: 10px;
-      overflow: hidden;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
     }
 
-    .metric-cell {
-      background: #0b0d13;
-      padding: 1.2rem 1.25rem;
+    .apple-card {
+      background: var(--card-surface);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border: 1px solid var(--border-hairline);
+      border-radius: 1.25rem;
+      padding-block: 1.5rem;
+      padding-inline: 1.65rem;
+      transition: border-color 0.25s ease, transform 0.25s ease;
     }
 
     .metric-val {
-      font-size: 1.35rem;
-      font-weight: 600;
-      color: #f4f6f8;
-      letter-spacing: -0.02em;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
     }
 
     .metric-desc {
-      font-size: 0.78rem;
+      font-size: 0.8125rem;
       color: var(--text-secondary);
-      margin-top: 0.2rem;
+      margin-block-start: 0.25rem;
     }
 
-    /* Experience List */
-    .exp-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.75rem;
+    /* Experience Timeline in an Apple Grouped Surface */
+    .grouped-surface {
+      background: var(--card-surface);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border: 1px solid var(--border-hairline);
+      border-radius: 1.25rem;
+      padding-block: 0.5rem;
+      padding-inline: 1.85rem;
     }
 
     .exp-item {
       display: grid;
-      grid-template-columns: 200px 1fr;
+      grid-template-columns: 190px 1fr;
       gap: 1.5rem;
-      padding-bottom: 1.75rem;
-      border-bottom: 1px solid var(--border-subtle);
+      padding-block: 1.5rem;
+      border-block-end: 1px solid var(--border-hairline);
     }
 
     .exp-item:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
+      border-block-end: none;
     }
 
     .exp-period {
-      font-size: 0.82rem;
-      color: var(--text-muted);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-secondary);
       font-variant-numeric: tabular-nums;
     }
 
     .exp-location {
-      font-size: 0.76rem;
-      color: var(--text-muted);
-      margin-top: 0.2rem;
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      margin-block-start: 0.2rem;
     }
 
     .exp-role {
-      font-size: 1rem;
+      font-size: 1.0625rem;
       font-weight: 600;
-      color: #f4f6f8;
-      margin-bottom: 0.4rem;
+      color: var(--text-primary);
+      margin-block-end: 0.4rem;
     }
 
     .exp-desc {
       font-size: 0.9rem;
       color: var(--text-secondary);
-      max-width: 68ch;
+      max-inline-size: 68ch;
     }
 
-    /* Technical Stack Table */
+    /* Technical Specifications Grid */
     .stack-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 1rem;
     }
 
-    .stack-card {
-      background: var(--surface-bg);
-      border: 1px solid var(--border-subtle);
-      border-radius: 10px;
-      padding: 1.15rem 1.25rem;
-    }
-
     .stack-category {
-      font-size: 0.8rem;
+      font-size: 0.8125rem;
       font-weight: 600;
-      color: #f4f6f8;
-      margin-bottom: 0.45rem;
+      color: var(--text-primary);
+      margin-block-end: 0.45rem;
     }
 
     .stack-items {
-      font-size: 0.84rem;
+      font-size: 0.84375rem;
       color: var(--text-secondary);
     }
 
-    /* Minimalist Repository Cards */
+    /* Selected Repositories with CSS Subgrid Alignment (css-layout) */
     .repo-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-rows: auto 1fr auto;
       gap: 1rem;
     }
 
     .repo-card {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      grid-row: span 3;
+      display: grid;
+      /* Same-cascade fallback before subgrid */
+      grid-template-rows: auto 1fr auto;
+      grid-template-rows: subgrid;
+      row-gap: 0.55rem;
       text-decoration: none;
       color: inherit;
-      background: var(--surface-bg);
-      border: 1px solid var(--border-subtle);
-      border-radius: 10px;
-      padding: 1.25rem;
-      transition: border-color 0.2s ease, transform 0.2s ease;
+      background: var(--card-surface);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border: 1px solid var(--border-hairline);
+      border-radius: 1.25rem;
+      padding-block: 1.4rem;
+      padding-inline: 1.5rem;
+      transition: border-color 0.25s ease, transform 0.25s ease;
     }
 
     .repo-card:hover {
@@ -439,37 +485,31 @@
     }
 
     .repo-name {
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: 600;
-      color: #f4f6f8;
-      margin-bottom: 0.4rem;
+      color: var(--apple-blue);
     }
 
     .repo-desc {
-      font-size: 0.85rem;
+      font-size: 0.875rem;
       color: var(--text-secondary);
-      margin-bottom: 0.85rem;
     }
 
     .repo-stack {
       font-size: 0.75rem;
-      color: var(--text-muted);
+      color: var(--text-tertiary);
+      padding-block-start: 0.35rem;
+      border-block-start: 1px solid var(--border-hairline);
     }
 
-    @media (max-width: 760px) {
+    @media (max-width: 720px) {
       .hero-header {
-        flex-direction: column-reverse;
-        align-items: flex-start;
-      }
-      .metrics-grid {
-        grid-template-columns: repeat(2, 1fr);
+        flex-wrap: wrap;
+        padding-inline: 1.5rem;
       }
       .exp-item {
         grid-template-columns: 1fr;
-        gap: 0.35rem;
-      }
-      .stack-grid, .repo-grid {
-        grid-template-columns: 1fr;
+        gap: 0.4rem;
       }
     }
   </style>
@@ -479,14 +519,14 @@
     <div class="torch-halo" aria-hidden="true"></div>
 
     <div class="container">
-      <!-- HEADER -->
+      <!-- APPLE HIG HERO HEADER -->
       <header class="hero-header">
         <div class="hero-title-group">
           <div class="torch-reveal-zone" id="hero-eyebrow-zone">
             <p class="eyebrow">Software Engineer II · Dish Networks · Plano, TX</p>
           </div>
 
-          <!-- Name stays visible in red font when Darth Vader is clicked -->
+          <!-- Name stays visible in red font when Darth Vader Dark-Side mode is clicked -->
           <h1 class="hero-name" id="hero-name">Sri Sai Srivatsa Yerrapragada</h1>
 
           <div class="torch-reveal-zone" id="hero-details-zone">
@@ -494,10 +534,10 @@
             <p class="hero-summary">
               Software Engineer with 4+ years of experience designing and scaling distributed backend services and AI systems in Python, Go, Java, and C++. End-to-end ownership from RFC to production across multi-agent orchestration (Temporal, Amazon Bedrock), 50M+ vector RAG engines, and multi-GPU PyTorch training pipelines.
             </p>
-            <nav class="nav-links" aria-label="Profile Links">
-              <a class="nav-link" href="https://www.linkedin.com/in/srivatsa-yerrapragada" target="_blank" rel="noopener">LinkedIn</a>
-              <a class="nav-link" href="mailto:sssrivatsa.yerrapragada@gmail.com">sssrivatsa.yerrapragada@gmail.com</a>
-              <a class="nav-link" href="https://github.com/ysri10" target="_blank" rel="noopener">GitHub</a>
+            <nav class="nav-links" aria-label="Primary Links">
+              <a class="apple-pill" href="https://www.linkedin.com/in/srivatsa-yerrapragada" target="_blank" rel="noopener">LinkedIn</a>
+              <a class="apple-pill" href="mailto:sssrivatsa.yerrapragada@gmail.com">sssrivatsa.yerrapragada@gmail.com</a>
+              <a class="apple-pill" href="https://github.com/ysri10" target="_blank" rel="noopener">GitHub</a>
             </nav>
           </div>
         </div>
@@ -509,9 +549,9 @@
             <svg viewBox="0 0 130 165" width="112" height="136" role="img" aria-label="Animated Darth Vader">
               <defs>
                 <linearGradient id="vaderHelmet" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#3a404c" />
-                  <stop offset="50%" stop-color="#191c22" />
-                  <stop offset="100%" stop-color="#090a0d" />
+                  <stop offset="0%" stop-color="#3a3a3c" />
+                  <stop offset="50%" stop-color="#1c1c1e" />
+                  <stop offset="100%" stop-color="#09090b" />
                 </linearGradient>
                 <linearGradient id="bladeCore" x1="0%" y1="100%" x2="0%" y2="0%">
                   <stop offset="0%" stop-color="#ffffff" />
@@ -523,51 +563,51 @@
               <ellipse cx="56" cy="154" rx="34" ry="5" fill="#000000" opacity="0.55" />
 
               <!-- Cape -->
-              <path d="M22,82 Q10,122 14,150 L98,150 Q102,122 90,82 Z" fill="#0b0d12" stroke="#262b36" stroke-width="1.1" />
+              <path d="M22,82 Q10,122 14,150 L98,150 Q102,122 90,82 Z" fill="#0b0b0d" stroke="#2c2c2e" stroke-width="1.1" />
 
               <!-- Torso -->
-              <path d="M26,84 Q56,73 86,84 L80,144 L32,144 Z" fill="#15181f" stroke="#2d3340" stroke-width="1.1" />
+              <path d="M26,84 Q56,73 86,84 L80,144 L32,144 Z" fill="#161618" stroke="#3a3a3c" stroke-width="1.1" />
 
               <!-- Chest Control Panel -->
-              <rect x="43" y="99" width="26" height="24" rx="2.5" fill="#0c0e12" stroke="#3b4252" stroke-width="1" />
-              <rect x="47" y="104" width="5" height="5" rx="1" fill="#ff2e2e">
+              <rect x="43" y="99" width="26" height="24" rx="2.5" fill="#0d0d0f" stroke="#48484a" stroke-width="1" />
+              <rect x="47" y="104" width="5" height="5" rx="1" fill="#ff3b30">
                 <animate attributeName="opacity" values="0.35;1;0.35" dur="1.3s" repeatCount="indefinite" />
               </rect>
-              <rect x="47" y="113" width="5" height="5" rx="1" fill="#3fb950">
+              <rect x="47" y="113" width="5" height="5" rx="1" fill="#30d158">
                 <animate attributeName="opacity" values="1;0.35;1" dur="1.9s" repeatCount="indefinite" />
               </rect>
-              <rect x="55" y="104" width="10" height="3.2" rx="1" fill="#58a6ff" />
-              <rect x="55" y="110" width="10" height="3.2" rx="1" fill="#8b949e" />
-              <rect x="55" y="116" width="10" height="3.2" rx="1" fill="#d29922" />
+              <rect x="55" y="104" width="10" height="3.2" rx="1" fill="#0a84ff" />
+              <rect x="55" y="110" width="10" height="3.2" rx="1" fill="#8e8e93" />
+              <rect x="55" y="116" width="10" height="3.2" rx="1" fill="#ff9f0a" />
 
               <!-- Belt -->
-              <rect x="30" y="129" width="52" height="7" rx="1.5" fill="#090a0d" stroke="#2d3340" />
-              <rect x="49" y="127" width="14" height="11" rx="1.5" fill="#8b949e" />
+              <rect x="30" y="129" width="52" height="7" rx="1.5" fill="#09090b" stroke="#3a3a3c" />
+              <rect x="49" y="127" width="14" height="11" rx="1.5" fill="#8e8e93" />
 
               <!-- Helmet -->
-              <path d="M18,70 Q20,18 56,18 Q92,18 94,70 L100,81 Q56,89 12,81 Z" fill="url(#vaderHelmet)" stroke="#3b4252" stroke-width="1.2" />
-              <path d="M54,18 L58,18 L59,54 L53,54 Z" fill="#484f58" opacity="0.65" />
-              <path d="M24,54 Q56,46 88,54" fill="none" stroke="#484f58" stroke-width="1.8" />
+              <path d="M18,70 Q20,18 56,18 Q92,18 94,70 L100,81 Q56,89 12,81 Z" fill="url(#vaderHelmet)" stroke="#48484a" stroke-width="1.2" />
+              <path d="M54,18 L58,18 L59,54 L53,54 Z" fill="#636366" opacity="0.6" />
+              <path d="M24,54 Q56,46 88,54" fill="none" stroke="#636366" stroke-width="1.8" />
 
               <!-- Eye Lenses -->
-              <ellipse cx="42" cy="59" rx="9.5" ry="5.2" transform="rotate(-8 42 59)" fill="#050608" stroke="#484f58" stroke-width="1.1" />
-              <ellipse cx="70" cy="59" rx="9.5" ry="5.2" transform="rotate(8 70 59)" fill="#050608" stroke="#484f58" stroke-width="1.1" />
-              <ellipse class="vader-eye-glint" cx="39" cy="57" rx="3.2" ry="1.2" transform="rotate(-8 39 57)" fill="#8b949e" opacity="0.6" />
-              <ellipse class="vader-eye-glint" cx="67" cy="57" rx="3.2" ry="1.2" transform="rotate(8 67 57)" fill="#8b949e" opacity="0.6" />
+              <ellipse cx="42" cy="59" rx="9.5" ry="5.2" transform="rotate(-8 42 59)" fill="#050507" stroke="#48484a" stroke-width="1.1" />
+              <ellipse cx="70" cy="59" rx="9.5" ry="5.2" transform="rotate(8 70 59)" fill="#050507" stroke="#48484a" stroke-width="1.1" />
+              <ellipse class="vader-eye-glint" cx="39" cy="57" rx="3.2" ry="1.2" transform="rotate(-8 39 57)" fill="#aeaeb2" opacity="0.55" />
+              <ellipse class="vader-eye-glint" cx="67" cy="57" rx="3.2" ry="1.2" transform="rotate(8 67 57)" fill="#aeaeb2" opacity="0.55" />
 
               <!-- Breathing Grill -->
-              <polygon points="56,63 43,79 69,79" fill="#1d212a" stroke="#484f58" stroke-width="1.1" />
-              <line x1="56" y1="65" x2="56" y2="78" stroke="#090a0d" stroke-width="1.4" />
-              <line x1="51" y1="69" x2="51" y2="78" stroke="#090a0d" stroke-width="1.3" />
-              <line x1="61" y1="69" x2="61" y2="78" stroke="#090a0d" stroke-width="1.3" />
+              <polygon points="56,63 43,79 69,79" fill="#1c1c1e" stroke="#636366" stroke-width="1.1" />
+              <line x1="56" y1="65" x2="56" y2="78" stroke="#09090b" stroke-width="1.4" />
+              <line x1="51" y1="69" x2="51" y2="78" stroke="#09090b" stroke-width="1.3" />
+              <line x1="61" y1="69" x2="61" y2="78" stroke="#09090b" stroke-width="1.3" />
 
               <!-- Right Hand & Lightsaber -->
-              <path d="M82,90 L102,108 L95,116 L76,99 Z" fill="#191d25" stroke="#2d3340" />
+              <path d="M82,90 L102,108 L95,116 L76,99 Z" fill="#1c1c1e" stroke="#3a3a3c" />
               <g transform="translate(102, 110) rotate(-12)">
-                <rect x="-3.6" y="-11" width="7.2" height="22" rx="1.8" fill="#9ca3af" stroke="#1f2937" stroke-width="1" />
-                <rect x="-4" y="-5" width="8" height="3.5" fill="#111827" />
-                <rect x="-4" y="2" width="8" height="5" fill="#111827" />
-                <circle cx="0" cy="-8" r="1.4" fill="#ff1a1a" />
+                <rect x="-3.6" y="-11" width="7.2" height="22" rx="1.8" fill="#aeaeb2" stroke="#1c1c1e" stroke-width="1" />
+                <rect x="-4" y="-5" width="8" height="3.5" fill="#1c1c1e" />
+                <rect x="-4" y="2" width="8" height="5" fill="#1c1c1e" />
+                <circle cx="0" cy="-8" r="1.4" fill="#ff3b30" />
 
                 <!-- Crimson Blade (Glows Red on Hover) -->
                 <g class="vader-saber-blade">
@@ -577,7 +617,7 @@
               </g>
             </svg>
           </div>
-          <span class="vader-status-caption" id="vader-status-caption">Hover · Click</span>
+          <span class="vader-status-caption" id="vader-status-caption">Interactive Mode</span>
         </label>
       </header>
 
@@ -585,31 +625,31 @@
       <div class="torch-reveal-zone" id="main-torch-zone">
         <!-- Key Benchmarks -->
         <section class="section">
-          <h2 class="section-label">Selected Benchmarks</h2>
+          <h2 class="section-header">Key Benchmarks</h2>
           <div class="metrics-grid">
-            <div class="metric-cell">
+            <div class="apple-card">
               <div class="metric-val">50M+</div>
               <div class="metric-desc">Vector Embeddings Indexed</div>
             </div>
-            <div class="metric-cell">
+            <div class="apple-card">
               <div class="metric-val">1M+ / day</div>
-              <div class="metric-desc">Queries at sub-150ms P99</div>
+              <div class="metric-desc">RAG Queries at sub-150ms P99</div>
             </div>
-            <div class="metric-cell">
+            <div class="apple-card">
               <div class="metric-val">99.95%</div>
-              <div class="metric-desc">Microservice Availability</div>
+              <div class="metric-desc">Production Service Availability</div>
             </div>
-            <div class="metric-cell">
+            <div class="apple-card">
               <div class="metric-val">3x AWS</div>
-              <div class="metric-desc">ML Specialty · SAA · DVA</div>
+              <div class="metric-desc">ML Specialty · SAA · Developer</div>
             </div>
           </div>
         </section>
 
         <!-- Experience -->
         <section class="section">
-          <h2 class="section-label">Experience</h2>
-          <div class="exp-list">
+          <h2 class="section-header">Experience</h2>
+          <div class="grouped-surface">
             <div class="exp-item">
               <div>
                 <div class="exp-period">Feb 2026 — Present</div>
@@ -666,21 +706,21 @@
 
         <!-- Technical Stack -->
         <section class="section">
-          <h2 class="section-label">Technical Stack</h2>
+          <h2 class="section-header">Technical Specifications</h2>
           <div class="stack-grid">
-            <div class="stack-card">
+            <div class="apple-card">
               <div class="stack-category">Languages</div>
               <div class="stack-items">Python · Go · Java · C / C++ · C# · TypeScript · SQL</div>
             </div>
-            <div class="stack-card">
+            <div class="apple-card">
               <div class="stack-category">AI &amp; LLM Infrastructure</div>
               <div class="stack-items">PyTorch DDP · LoRA · RAG · Amazon Bedrock · Temporal · LangGraph · PydanticAI · Pinecone · FAISS · MLflow</div>
             </div>
-            <div class="stack-card">
+            <div class="apple-card">
               <div class="stack-category">Backend &amp; Distributed Systems</div>
               <div class="stack-items">FastAPI · Spring Boot · Node.js · REST · OAuth / JWT · Kafka · AWS SNS / SQS · Microservices</div>
             </div>
-            <div class="stack-card">
+            <div class="apple-card">
               <div class="stack-category">Cloud, Data &amp; Infrastructure</div>
               <div class="stack-items">AWS · GCP · Kubernetes · Docker · Terraform · Snowflake · PostgreSQL · Redis · DynamoDB · Spark</div>
             </div>
@@ -689,53 +729,41 @@
 
         <!-- Selected Repositories -->
         <section class="section">
-          <h2 class="section-label">Selected Repositories</h2>
+          <h2 class="section-header">Selected Engineering Projects</h2>
           <div class="repo-grid">
             <a class="repo-card" href="https://github.com/ysri10/Semantic-Search-Analysis" target="_blank" rel="noopener">
-              <div>
-                <div class="repo-name">Semantic-Search-Analysis</div>
-                <p class="repo-desc">Multi-document semantic search engine over PDF and TXT files with batched transformer embeddings and FAISS L2 indexing.</p>
-              </div>
+              <h3 class="repo-name">Semantic-Search-Analysis</h3>
+              <p class="repo-desc">Multi-document semantic search engine over PDF and TXT files with batched transformer embeddings and FAISS L2 indexing.</p>
               <div class="repo-stack">DistilBERT · SentenceTransformers · FAISS · Flask · React</div>
             </a>
 
             <a class="repo-card" href="https://github.com/ysri10/Cold-Email-Generator" target="_blank" rel="noopener">
-              <div>
-                <div class="repo-name">Cold-Email-Generator</div>
-                <p class="repo-desc">Automated career page scraper and outreach generator matching job requirements against a vector portfolio store.</p>
-              </div>
+              <h3 class="repo-name">Cold-Email-Generator</h3>
+              <p class="repo-desc">Automated career page scraper and outreach generator matching job requirements against a vector portfolio store.</p>
               <div class="repo-stack">LangChain · LLaMA 3.1-70B (Groq) · ChromaDB · Streamlit</div>
             </a>
 
             <a class="repo-card" href="https://github.com/ysri10/camera-view-adjustment" target="_blank" rel="noopener">
-              <div>
-                <div class="repo-name">camera-view-adjustment</div>
-                <p class="repo-desc">Pre-capture active camera view adjustment architecture analysis and multi-view composition benchmarks (FCDB, GAICD, CPC, Pano2Vid).</p>
-              </div>
+              <h3 class="repo-name">camera-view-adjustment</h3>
+              <p class="repo-desc">Pre-capture active camera view adjustment architecture analysis and multi-view composition benchmarks (FCDB, GAICD, CPC, Pano2Vid).</p>
               <div class="repo-stack">MobileNet-SPP · Semi-Supervised Learning · PyTorch</div>
             </a>
 
             <a class="repo-card" href="https://github.com/ysri10/Movie-Recommendation-System" target="_blank" rel="noopener">
-              <div>
-                <div class="repo-name">Movie-Recommendation-System</div>
-                <p class="repo-desc">Content-based movie recommender trained on TMDB 5000 with cosine similarity ranking and live poster retrieval.</p>
-              </div>
+              <h3 class="repo-name">Movie-Recommendation-System</h3>
+              <p class="repo-desc">Content-based movie recommender trained on TMDB 5000 with cosine similarity ranking and live poster retrieval.</p>
               <div class="repo-stack">Scikit-Learn · Cosine Similarity · NLTK · Streamlit</div>
             </a>
 
             <a class="repo-card" href="https://github.com/ysri10/Email-Spam-Detector" target="_blank" rel="noopener">
-              <div>
-                <div class="repo-name">Email-Spam-Detector</div>
-                <p class="repo-desc">Real-time SMS and Email spam classifier benchmarking 11 ML models and serving a TF-IDF + Multinomial Naive Bayes pipeline.</p>
-              </div>
+              <h3 class="repo-name">Email-Spam-Detector</h3>
+              <p class="repo-desc">Real-time SMS and Email spam classifier benchmarking 11 ML models and serving a TF-IDF + Multinomial Naive Bayes pipeline.</p>
               <div class="repo-stack">Scikit-Learn · NLTK · TF-IDF · Streamlit</div>
             </a>
 
             <a class="repo-card" href="https://github.com/ysri10/NoteBook" target="_blank" rel="noopener">
-              <div>
-                <div class="repo-name">NoteBook</div>
-                <p class="repo-desc">Full-stack note-taking web application with JWT authentication, auto-refresh interceptors, and protected routes.</p>
-              </div>
+              <h3 class="repo-name">NoteBook</h3>
+              <p class="repo-desc">Full-stack note-taking web application with JWT authentication, auto-refresh interceptors, and protected routes.</p>
               <div class="repo-stack">Django REST · SimpleJWT · PostgreSQL · React 18 · Vite</div>
             </a>
           </div>
@@ -800,7 +828,7 @@
         stopDarkSideTimers();
         toggle.checked = false;
         shell.classList.remove('is-active');
-        caption.textContent = 'Hover · Click';
+        caption.textContent = 'Interactive Mode';
       }
 
       function activateDarkSide() {
@@ -811,7 +839,7 @@
           const remainingSec = Math.max(0, Math.ceil((expiresAt - Date.now()) / 1000));
           const mins = String(Math.floor(remainingSec / 60)).padStart(2, '0');
           const secs = String(remainingSec % 60).padStart(2, '0');
-          caption.textContent = `Torch ${mins}:${secs} · Exit`;
+          caption.textContent = `${mins}:${secs} Remaining`;
         };
 
         updateBadge();
